@@ -1,3 +1,7 @@
-import AccountReq from './manual/AccountReq';
+import AccountReq from './manuals/AccountReq';
+import PintuanReq from './manuals/PintuanReq';
 
-AccountReq.login();
+// AccountReq.login();
+
+console.log('abc')
+console.log(PintuanReq)

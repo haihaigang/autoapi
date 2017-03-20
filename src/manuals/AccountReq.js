@@ -19,11 +19,11 @@ class AccountReq {
             contentType: 'formData'
         });
         req.setSimpleParams('haigang@meigo.com', '123456', 9090);
-        req.setComplexParams({
-            username: 'haigang@meigo.com',
-            password: '123456',
-            vcode: 9891
-        });
+        // req.setComplexParams({
+        //     username: 'haigang@meigo.com',
+        //     password: '123456',
+        //     vcode: 9891
+        // });
         req.setSuccessFn(function(response) {
             console.log('success result is processing.');
         });
@@ -32,8 +32,6 @@ class AccountReq {
         });
 
         req.send();
-
-        console.log(req)
     }
 
     logout() {

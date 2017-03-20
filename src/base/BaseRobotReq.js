@@ -6,8 +6,8 @@ class BaseRobotReq extends BaseReq {
         console.log('BaseRobotReq constructor')
 
         this._defaultOptions = {}; //默认的请求配置
-        this._options = options; //请求配置，包含请求地址、请求类型、请求内容类型等
-        this._params = params; //请求参数
+        this._options = options || {}; //请求配置，包含请求地址、请求类型、请求内容类型等
+        this._params = params || {}; //请求参数
         this._successFn = successFn || function() {}; //成功回调
         this._errorFn = errorFn || function() {}; //失败回调
     }
@@ -98,7 +98,7 @@ class BaseRobotReq extends BaseReq {
         if (id) {
             url = url.replace(':id', id);
         }
-        return (this.isPhpHost ? this.phpHost : this.host) + url;
+        return (this._isPhpHost ? this._phpHost : this._host) + url;
     }
 
 }

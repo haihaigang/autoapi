@@ -1,6 +1,7 @@
-import BaseRobotReq from "../base/BaseRobotReq";
+import BaseRobotReq from "../../../base/BaseRobotReq";
 
 /**
+ * 该文件系自动生成，手动修改可能会被替换
  * 接口：登录
  * 接口地址：/account/login
  * 请求方式：POST
@@ -19,7 +20,7 @@ class AccountLoginReq extends BaseRobotReq {
             contentType: 'application/json'
         };
 
-        // 请求参数的描述信息，只定义没用处
+        // 请求参数的描述信息，只定义先不用
         this._paramsDescriptor = [{
             key: 'username',
             desc: '用户名',
@@ -33,6 +34,8 @@ class AccountLoginReq extends BaseRobotReq {
             desc: '验证码',
             isRequired: true
         }];
+
+        this.curd = 'c';
     }
 
     /**

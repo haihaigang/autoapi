@@ -75,8 +75,6 @@ define(['exports', '../robot/AccountLoginReq'], function (exports, _AccountLogin
                 });
 
                 req.send();
-
-                console.log(req);
             }
         }, {
             key: 'logout',

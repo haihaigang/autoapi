@@ -86,86 +86,35 @@ define(['exports', './BaseReq'], function (exports, _BaseReq2) {
         if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
     }
 
-    var BaseRobotReq = function (_BaseReq) {
-        _inherits(BaseRobotReq, _BaseReq);
+    var CurdReq = function (_BaseReq) {
+        _inherits(CurdReq, _BaseReq);
 
-        function BaseRobotReq(options, params, successFn, errorFn) {
-            _classCallCheck(this, BaseRobotReq);
+        function CurdReq(name) {
+            _classCallCheck(this, CurdReq);
 
-            var _this = _possibleConstructorReturn(this, (BaseRobotReq.__proto__ || Object.getPrototypeOf(BaseRobotReq)).call(this, options));
+            var _this = _possibleConstructorReturn(this, (CurdReq.__proto__ || Object.getPrototypeOf(CurdReq)).call(this));
 
-            console.log('BaseRobotReq constructor');
-
-            _this._defaultOptions = {}; //默认的请求配置
-            _this._options = options || {}; //请求配置，包含请求地址、请求类型、请求内容类型等
-            _this._params = params || {}; //请求参数
-            _this._successFn = successFn || function () {}; //成功回调
-            _this._errorFn = errorFn || function () {}; //失败回调
+            _this.curd = { //基本的curd接口
+                create: '/:name/create',
+                update: '/:name/update/:id',
+                retrieve: '/:name/list',
+                delete: '/:name/delete',
+                detail: '/:name/get/:id'
+            };
+            _this.key = 'id'; //列表中的主键，用于生成table中的key和查找详情、删除的参数名
+            _this.name = name;
+            _this.timeout = 0;
             return _this;
         }
 
-        _createClass(BaseRobotReq, [{
-            key: 'getOptions',
-            value: function getOptions() {
-                return this._options;
-            }
-        }, {
-            key: 'setOptions',
-            value: function setOptions(options) {
-                this._options = options;
-            }
-        }, {
-            key: 'getParams',
-            value: function getParams() {
-                return this._params;
-            }
-        }, {
-            key: 'setParams',
-            value: function setParams(params) {
-                this._params = params;
-            }
-        }, {
-            key: 'addParams',
-            value: function addParams(key, value) {
-                this._params[key] = value;
-            }
-        }, {
-            key: 'getSuccessFn',
-            value: function getSuccessFn() {
-                this._successFn;
-            }
-        }, {
-            key: 'setSuccessFn',
-            value: function setSuccessFn(fn) {
-                this._successFn = fn;
-            }
-        }, {
-            key: 'getErrorFn',
-            value: function getErrorFn() {
-                return this._errorFn;
-            }
-        }, {
-            key: 'setErrorFn',
-            value: function setErrorFn(fn) {
-                this._errorFn = fn;
-            }
-        }, {
-            key: 'send',
-            value: function send() {
-                this.processOptions();
-                _get(BaseRobotReq.prototype.__proto__ || Object.getPrototypeOf(BaseRobotReq.prototype), 'send', this).call(this, this._options, this._successFn, this._errorFn);
-            }
-        }, {
-            key: 'processOptions',
-            value: function processOptions() {
-                this._options = this.assign(this._defaultOptions || {}, this._options);
+        /**
+         * 格式化接口地址
+         * @param url 路由
+         * @param id  编号
+         */
 
-                this._options.data = this._params;
-                this._options.url = this.formatUrl(this._options.url);
 
-                return this._options;
-            }
-        }, {
+        _createClass(CurdReq, [{
             key: 'formatUrl',
             value: function formatUrl(url, id) {
                 if (!url) {
@@ -179,10 +128,61 @@ define(['exports', './BaseReq'], function (exports, _BaseReq2) {
                 }
                 return (this.isPhpHost ? this.phpHost : this.host) + url;
             }
+        }, {
+            key: 'search',
+            value: function search(condition, callback, callbackError) {
+                _get(CurdReq.prototype.__proto__ || Object.getPrototypeOf(CurdReq.prototype), 'search', this).call(this, {
+                    url: this.formatUrl(this.curd.retrieve),
+                    type: 'GET',
+                    data: condition,
+                    key: this.key,
+                    timeout: this.timeout,
+                    responseKey: this.responseKey
+                }, callback, callbackError);
+            }
+        }, {
+            key: 'save',
+            value: function save(data, callback, callbackError) {
+                var url = this.formatUrl(this.curd.create);
+                if (data && data.id) {
+                    url = this.formatUrl(this.curd.update, data.id);
+                }
+
+                _get(CurdReq.prototype.__proto__ || Object.getPrototypeOf(CurdReq.prototype), 'save', this).call(this, {
+                    url: url,
+                    data: data,
+                    type: 'POST',
+                    contentType: this.contentType || 'application/json'
+                }, callback, callbackError);
+            }
+        }, {
+            key: 'getDetail',
+            value: function getDetail(id, callback, callbackError) {
+                var data = {};
+                data[this.key] = id;
+
+                _get(CurdReq.prototype.__proto__ || Object.getPrototypeOf(CurdReq.prototype), 'send', this).call(this, {
+                    url: this.formatUrl(this.curd.detail, id),
+                    data: data,
+                    showLoading: true
+                }, callback, callbackError);
+            }
+        }, {
+            key: 'remove',
+            value: function remove(id, callback, callbackError) {
+                var data = {};
+                data[this.key] = id;
+
+                _get(CurdReq.prototype.__proto__ || Object.getPrototypeOf(CurdReq.prototype), 'remove', this).call(this, {
+                    url: this.formatUrl(this.curd.delete, id),
+                    data: data,
+                    type: 'POST'
+                }, callback, callbackError);
+            }
         }]);
 
-        return BaseRobotReq;
+        return CurdReq;
     }(_BaseReq3.default);
 
-    exports.default = BaseRobotReq;
+    exports.default = CurdReq;
 });
