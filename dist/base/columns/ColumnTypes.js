@@ -8,10 +8,10 @@ define(['exports'], function (exports) {
    * 表头类型表
    * @type {Object}
    */
-  var ColumnTypes = {
+  var COLUMN_TYPES = {
     text: 'text',
     date: 'date'
   };
 
-  exports.default = ColumnTypes;
+  exports.default = COLUMN_TYPES;
 });

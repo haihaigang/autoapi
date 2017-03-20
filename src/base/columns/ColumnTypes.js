@@ -2,9 +2,9 @@
  * 表头类型表
  * @type {Object}
  */
-const ColumnTypes = {
+const COLUMN_TYPES = {
     text: 'text',
     date: 'date',
 }
 
-export default ColumnTypes;
+export default COLUMN_TYPES;

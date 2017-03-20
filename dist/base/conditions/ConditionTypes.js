@@ -8,10 +8,10 @@ define(['exports'], function (exports) {
    * 搜索条件类型表
    * @type {Object}
    */
-  var ConditionTypes = {
+  var CONDITION_TYPES = {
     text: 'text',
     select: 'select'
   };
 
-  exports.default = ConditionTypes;
+  exports.default = CONDITION_TYPES;
 });

@@ -7,7 +7,8 @@ define(['exports'], function (exports) {
     /**
      * 生成时间：2017.03.20 11:22:33
      * 该文件系自动生成，手动修改可能会被替换
-     * 表头：拼团活动
+     * 根据搜索接口的响应字段生成
+     * 表头：拼团
      * {
      * "title": "显示的名称",
      * "dataIndex": "排序标识",
@@ -15,7 +16,7 @@ define(['exports'], function (exports) {
      * "checked": "默认是否显示"
      * }
      */
-    var columns = [{
+    var PINTUAN_COLUMNS = [{
         title: '编号',
         dataIndex: 'id',
         key: 'id',
@@ -59,5 +60,5 @@ define(['exports'], function (exports) {
         checked: true
     }];
 
-    exports.default = columns;
+    exports.default = PINTUAN_COLUMNS;
 });
