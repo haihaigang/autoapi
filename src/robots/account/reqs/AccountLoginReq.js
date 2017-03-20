@@ -1,6 +1,7 @@
-import BaseRobotReq from "../../../base/BaseRobotReq";
+import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
+ * 生成时间：2017.03.20 11:22:33
  * 该文件系自动生成，手动修改可能会被替换
  * 接口：登录
  * 接口地址：/account/login

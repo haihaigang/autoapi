@@ -1,9 +1,9 @@
-define(['./manuals/AccountReq', './manuals/PintuanReq'], function (_AccountReq, _PintuanReq) {
+define(['./pages/pintuan/columns/PintuanColumns', './pages/pintuan/conditions/PintuanConditions'], function (_PintuanColumns, _PintuanConditions) {
   'use strict';
 
-  var _AccountReq2 = _interopRequireDefault(_AccountReq);
+  var _PintuanColumns2 = _interopRequireDefault(_PintuanColumns);
 
-  var _PintuanReq2 = _interopRequireDefault(_PintuanReq);
+  var _PintuanConditions2 = _interopRequireDefault(_PintuanConditions);
 
   function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
@@ -11,8 +11,6 @@ define(['./manuals/AccountReq', './manuals/PintuanReq'], function (_AccountReq, 
     };
   }
 
-  // AccountReq.login();
-
-  console.log('abc');
-  console.log(_PintuanReq2.default);
+  var p = new _PintuanConditions2.default();
+  console.log(p.getConditions());
 });

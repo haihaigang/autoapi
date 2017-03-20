@@ -1,7 +1,5 @@
-import AccountReq from './manuals/AccountReq';
-import PintuanReq from './manuals/PintuanReq';
+import PintuanColumns from './pages/pintuan/columns/PintuanColumns'
+import PintuanConditions from './pages/pintuan/conditions/PintuanConditions'
 
-// AccountReq.login();
-
-console.log('abc')
-console.log(PintuanReq)
+var p = new PintuanConditions();
+console.log(p.getConditions());
