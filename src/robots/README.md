@@ -28,4 +28,4 @@
 >>>
 >>> forms
 >>>
->>>> PintuanForms.js 当前模块的表单字段定义
+>>>> PintuanFormFields.js 当前模块的表单字段定义
