@@ -5,13 +5,15 @@
  * 规则：
  */
 [{
-    "name": "pintuan",
-    "desc": "",
-    "children": [{
-        "name": "order",
-        "desc": ""
-    }]
+    "module": "pintuan",
+    "template": "pintuan",
+    "desc": "拼团活动"
 }, {
-    "name": "user",
-    "desc": ""
+    "module": "pintuan",
+    "template": "order",
+    "desc": "拼团活动订单"
+}, {
+    "module": "user",
+    "template": "user",
+    "desc": "用户管理'"
 }]
